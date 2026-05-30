@@ -265,7 +265,7 @@ ros2 launch spider_bot_description display.launch.py
 
 ## Output
 
-![Gazebo](output.png)
+![Gazebo](o.png)
 
 ---
 
@@ -281,7 +281,7 @@ ros2 launch spider_bot_description display.launch.py
 ## Author
 
 **Anup** — MSc CS, Robotics & Automation, HAM Munich
-[GitHub](https://github.com/the2003onean) · [LinkedIn](https://linkedin.com/in/your-profile)
+
 
 ---
 
