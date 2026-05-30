@@ -1,10 +1,37 @@
 # Spider Bot — 12 DOF Quadruped Robot (ROS 2 + Gazebo Harmonic)
 
-A 12-DOF quadruped spider robot simulated in Gazebo Harmonic using ROS 2 Jazzy.
-Built with analytical Inverse Kinematics and a trot gait pattern.
-URDF structure and ROS 2 conventions developed with assistance from Claude (Anthropic).
-All dimensions, IK mathematics, and gait logic are specific to this hardware build.
+## Development Notes
 
+### Inverse Kinematics
+The analytical IK solution was derived from personal study of forward and inverse
+kinematics for 3-DOF serial chain manipulators. The cosine rule was applied to
+solve the knee angle (θ3) from the triangle formed by femur, tibia and the
+straight-line distance to the target foot position. Hip angle (θ2) was then
+solved using atan2, chosen over regular arctan for its full 360° quadrant
+coverage. Coxa direction (θ1) was solved first as it is independent of the
+other joints.
+
+Reference notebooks: `forward_kinematics_quadruped.ipynb`, `inverse_kinematics_quadruped.ipynb`
+
+### Claude (Anthropic) Assistance
+Parts of this project were developed with assistance from Claude. The following
+prompt was used to generate the initial URDF structure:
+
+> "Create a full Gazebo-ready URDF for a 12-DOF quadruped spider robot with
+> Coxa→Femur→Tibia leg layout. Body dimensions 15×11×4.5cm, coxa 3.5cm,
+> femur 7cm, tibia 7.5cm. Include visual, collision and inertia for all links,
+> ros2_control hardware interface for all 12 joints, and Gazebo material tags.
+> Joint limits, damping and friction should be physically realistic."
+
+Claude also assisted with:
+- ROS 2 package structure and setup.py configuration
+- gazebo.launch.py — specifically the GZ_SIM_SYSTEM_PLUGIN_PATH fix and
+  TimerAction sequencing for controller loading
+- Debugging the URDF angle mapping between IK space and URDF body frame
+  (outward_sign applied to femur and tibia joints for right legs)
+
+All hardware dimensions, IK mathematics, gait parameters and design decisions
+are the author's own work.
 ---
 
 ## Robot Specifications
