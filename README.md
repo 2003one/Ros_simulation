@@ -265,7 +265,7 @@ ros2 launch spider_bot_description display.launch.py
 
 ## Output
 
-![Gazebo](gazebo.png)
+![Gazebo](output.png)
 
 ---
 
