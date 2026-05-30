@@ -1,0 +1,28 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 50  # Hz
+
+    # Broadcasts all joint states to /joint_states
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    # Accepts position commands for all 12 joints as a flat array
+    joint_group_position_controller:
+      type: position_controllers/JointGroupPositionController
+
+# Joint order MUST match exactly what walk_forward.py sends
+joint_group_position_controller:
+  ros__parameters:
+    joints:
+      - fl_coxa_joint
+      - fl_femur_joint
+      - fl_tibia_joint
+      - fr_coxa_joint
+      - fr_femur_joint
+      - fr_tibia_joint
+      - rl_coxa_joint
+      - rl_femur_joint
+      - rl_tibia_joint
+      - rr_coxa_joint
+      - rr_femur_joint
+      - rr_tibia_joint
